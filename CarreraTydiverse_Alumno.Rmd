@@ -244,10 +244,9 @@ la mediana (función `stats::median`) de la variable `size` y almacénalos en la
 
 
 pack_sum <- by_package %>%
-  summarise(
-    count = n(),
-    unique = n_distinct(ip_id),
-    countries = n_distinct(country),
+  summarise(count = n(),
+            unique = n_distinct(ip_id),
+            countries = n_distinct(country),
     avg_bytes = mean(size, na.rm = TRUE)
   )
 
@@ -257,8 +256,7 @@ pack_sum <- by_package %>%
 22. Muestra el 1% de los paquetes que han sido más descargados. Para ello puedes utilizar la función `quantile(????, probs=0.99)`. Siendo ??? la variable de interés, que te permitirá estimar el umbral. Los valores por encima serán los que nos interesen. Almacena estos paquetes **top descargas** en la variable `top_counts`. **NOTA: De ahora en adelante concatena todas las operaciones partiendo del elemento `cran`, usando _pipes_**.
 ```{r}
 
-top_counts <- pack_sum %>%
-  filter(count > quantile(count, probs = 0.99))
+top_counts <- pack_sum %>%filter(count > quantile(count, probs = 0.99))
 
 ```
 23. Repite el apartado anterior utilizando **pipes** para que finalmente el resultado se ordene, en orden descendente, según el número de descargas (`count`) y se almacene el la variable `top_counts_sorted`
@@ -404,8 +402,7 @@ gradebook <- students4 %>%select(id, midterm, final)
 ```
 34. Consideremos el caso de una observación almacenada en varias tablas. Observa los datos almacenados en `failed` y `passed` con la información de los alumnos que suspeden (calificaciones C,D,E,F) y los que aprueban (calificaciones A, B). Debes unir ambos conjuntos en uno que contenga una columna adicional llamada `status` que indicará `passed` o `failed` según la situación de cada alumno, puedes usar la función `bind_rows`.
 ```{r}
-all_students <- bind_rows(failed %>% mutate(status = "failed"), passed %>% mutate(status = "passed")
-)
+all_students <- bind_rows(failed %>% mutate(status = "failed"), passed %>% mutate(status = "passed"))
 
 
 ```
@@ -415,10 +412,13 @@ all_students <- bind_rows(failed %>% mutate(status = "failed"), passed %>% mutat
 Considera los datos almacenado en `sat` y haz las transformaciones adecuadas para que las columnas del conjunto `tidy` sean `score_range, part, sex, count` en ese orden. Ten en cuenta que los datos totales no es necesario almacenarlos ya que se pueden generar a posteriori.
 
 ```{r}
-
-
-
-
+sat_tidy <- sat %>%
+  pivot_longer(
+    cols = -score_range,
+    names_to = c("part", "sex"),
+    names_sep = "_",
+    values_to = "count"
+  )
 
 
 ```
