@@ -324,8 +324,15 @@ cran %>%
 `cran%>%...+geom_point()`
 
 ```{r}
-
-
+library(tidyverse)
+cran %>%
+  group_by(country) %>%
+  summarise(total_size = sum(size, na.rm = TRUE)) %>%
+  filter(total_size > quantile(total_size, probs = 0.9)) %>%
+  ggplot(aes(x = reorder(country, -total_size), y = total_size)) +
+  geom_bar(stat = "identity") +
+  labs(x = "País", y = "Tráfico generado (bytes)") +
+  theme_minimal()
 
 
 ```
