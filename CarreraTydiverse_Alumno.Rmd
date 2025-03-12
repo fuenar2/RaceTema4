@@ -492,7 +492,7 @@ fecha<-'19200102'
 ymd(fecha)
 
 fecha1 <- dmy(25081985)
-fecha2 <- ymd(19200102)
+fecha2 <- ymd(1920-01-02)
 
 
 ```
