@@ -456,10 +456,12 @@ ggplot(sat_tidy, aes(x = score_range, y = prop, fill = sex)) +
 38. La función `today` devuelve la fecha actual. Almacéna la fecha actual en `this_day`, y muéstrala por pantalla. Usa las funciones `year, month y day` para extraer cada una de las partes. `wday` para obtener el día de la semana ()
 ```{r}
 
-
-
-
-
+this_day <- today()
+print(this_day)
+year(this_day)
+month(this_day)
+day(this_day)
+wday(this_day, label = TRUE)
 
 
 ```
