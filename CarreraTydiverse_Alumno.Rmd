@@ -377,7 +377,7 @@ students2 <- students2 %>% pivot_longer(cols = starts_with("male") | starts_with
 31. Considera el conjunto `students3` y observa por qué no es un `tidy data` . Las variables finales del conjunto deberían ser: `name, class, midterm, final`. Dado que un alumno solo puede estar en una de las clases aparecen muchos `NA`, al reorganizar, usa `na.rm=TRUE` en las opciones de `gather`
 ```{r}
 
-
+students3 <- students3 %>%pivot_longer(cols = starts_with("class"), names_to = "class", values_to = "score") %>%separate(class, into = c("class", "exam"), sep = "_") %>%pivot_wider(names_from = exam, values_from = score)
 
 
 ```
