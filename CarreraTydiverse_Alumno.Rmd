@@ -522,12 +522,12 @@ this_moment <- update(this_moment, hours = hour(now()), minutes = minute(now()),
   
 ```{r}
 
+ny <- now(tzone = "America/New_York")
+salida <- ny + days(2)
+salida <- update(salida, hours = 17, minutes = 34)
 
-
-
-
-
-
+llegada_ny <- salida + hours(15) + minutes(50)
+llegada_ny
 
 
 ```
