@@ -384,6 +384,8 @@ students3 <- students3 %>%pivot_longer(cols = starts_with("class"), names_to = "
 32. Considera que la columna `class` queremos especificarla con valores, 1,2,3,4 y 5 en lugar de class1, ..., class5. En librería de importación de datos (`readr`) se proporcionan funciones que permite identificar y extraer diversos tipos de datos. Son las funciones `parse_XXXX`. Observa el efecto de aplicar `parse_number('class5')` y utiliza el resultado para realizar la tarea solicitada.
 
 ```{r}
+students3 <- students3 %>%
+  mutate(class = parse_number(class))
 
 
 
