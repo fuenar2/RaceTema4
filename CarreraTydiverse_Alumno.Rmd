@@ -436,15 +436,16 @@ sat_tidy <- sat_tidy %>%
 37. Representa gráficamente el conjunto obtenido para mostrar las diferencias entre hombres y mujeres, en las diferentes pruebas para cada una de las franjas de calificación.
 ```{r}
 
-
-
-
-
-
-
-
-
-
+ggplot(sat_tidy, aes(x = score_range, y = prop, fill = sex)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~part, scales = "free") +
+  labs(
+    x = "Rango de puntuación",
+    y = "Proporción de estudiantes",
+    fill = "Sexo",
+    title = "Proporción de estudiantes por rango de puntuación, sexo y parte del examen"
+  ) +
+  theme_minimal()
 
 
 ```
